@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Send, CheckCircle2, MessageSquare, Sparkles, Handshake, AlertCircle } from 'lucide-react';
 
 interface ContactFormProps {
@@ -21,6 +21,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setInquiryType(initialType);
+    setFormData((prev) => ({
+      ...prev,
+      message: initialProductNotes ? `Inquiry regarding: ${initialProductNotes}\n\n` : '',
+    }));
+  }, [initialType, initialProductNotes]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

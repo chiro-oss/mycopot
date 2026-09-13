@@ -14,7 +14,7 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({ onNavigate }) => {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-white border-b border-[#10251B]/10">
+      <section className="py-10 md:py-16 bg-white border-b border-[#10251B]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2F7D4A]/10 border border-[#2F7D4A]/20 mb-4">
@@ -22,10 +22,10 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({ onNavigate }) => {
                 MATERIAL ARCHITECTURE // SPEC-001
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-[#10251B] leading-[1.08] mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-[#10251B] leading-[1.08] mb-3">
               MEET THE MATERIAL.
             </h1>
-            <p className="text-xl sm:text-2xl text-[#2F7D4A] font-semibold mb-6">
+            <p className="text-xl sm:text-2xl text-[#2F7D4A] font-semibold mb-4">
               A composite grown through biology.
             </p>
             <p className="text-base sm:text-lg text-[#10251B]/80 leading-relaxed">

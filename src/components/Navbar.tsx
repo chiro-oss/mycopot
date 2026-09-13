@@ -42,20 +42,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-[#10251B]/10 shadow-xs py-3'
-          : 'bg-[#F7F9F6] border-b border-[#10251B]/5 py-4 sm:py-5'
+          ? 'bg-white/80 backdrop-blur-sm border-b border-[#10251B]/10 shadow-xs py-1'
+          : 'bg-transparent border-b border-transparent py-1'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-1.5">
         {/* Brand Logo */}
         <button
           onClick={() => handleNavClick('home')}
-          className="group text-left focus:outline-hidden"
+          className="group text-left focus:outline-hidden shrink-0"
           aria-label="MYCOPOT Home"
         >
-          <MycopotLogo variant="horizontal" markSize={36} showSub={true} />
+          <MycopotLogo variant="horizontal" markSize={22} showSub={false} />
         </button>
 
         {/* Desktop Navigation Links */}
@@ -66,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
+                className={`px-1.5 py-0.5 rounded-full text-[9px] font-semibold tracking-wide transition-all ${
                   isActive
                     ? 'bg-[#10251B] text-white shadow-xs'
                     : 'text-[#10251B]/80 hover:text-[#10251B] hover:bg-[#10251B]/5'
@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => handleNavClick('products')}
-            className="px-4 py-2 rounded-full bg-[#2F7D4A] hover:bg-[#25633a] text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-xs"
+            className="px-2 py-0.5 rounded-full bg-[#2F7D4A] hover:bg-[#25633a] text-white text-[9px] font-bold uppercase tracking-wider transition-colors flex items-center gap-1 shadow-xs"
           >
             <span>Explore Products</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-[#8DBF73]" />

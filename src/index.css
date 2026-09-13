@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
+/* Subtle scientific grid & bio network backgrounds */
+.bg-tech-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 37, 27, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 37, 27, 0.035) 1px, transparent 1px);
+}
+
+.bg-tech-grid-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(141, 191, 115, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(141, 191, 115, 0.05) 1px, transparent 1px);
+}
+

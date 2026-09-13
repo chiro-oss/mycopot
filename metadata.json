@@ -1,0 +1,8 @@
+{
+  "name": "MYCOPOT",
+  "description": "MYCOPOT develops biodegradable plant pots from oyster mushroom mycelium and sawdust, exploring biological materials for sustainable applications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

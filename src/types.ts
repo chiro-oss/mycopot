@@ -1,4 +1,6 @@
-export type PageId = 'home' | 'material' | 'products' | 'process' | 'rd' | 'about' | 'contact';
+export type PageId = 'home' | 'material' | 'products' | 'process' | 'rd' | 'about' | 'contact' | 'investor';
+
+export type Language = 'id' | 'en';
 
 export interface ProductItem {
   id: string;

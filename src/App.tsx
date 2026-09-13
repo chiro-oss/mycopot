@@ -13,15 +13,19 @@ import { ProcessPage } from './pages/ProcessPage';
 import { RDPage } from './pages/RDPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
+import { InvestorPitchPage } from './pages/InvestorPitchPage';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { CustomQuoteModal } from './components/CustomQuoteModal';
-import type { PageId, ProductItem } from './types';
+import { InvestorPitchDeckModal } from './components/InvestorPitchDeckModal';
+import type { Language, PageId, ProductItem } from './types';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const [isPitchDeckOpen, setIsPitchDeckOpen] = useState(false);
   const [customProductNotes, setCustomProductNotes] = useState<string>('');
+  const [lang, setLang] = useState<Language>('id');
 
   // Handle URL hash changes
   useEffect(() => {
@@ -35,6 +39,7 @@ export default function App() {
         'rd',
         'about',
         'contact',
+        'investor',
       ];
       if (validPages.includes(hash)) {
         setCurrentPage(hash);
@@ -52,13 +57,17 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleToggleLang = () => {
+    setLang((prev) => (prev === 'id' ? 'en' : 'id'));
+  };
+
   const handleProductSelect = (product: ProductItem) => {
     setSelectedProduct(product);
   };
 
   const handleInquireFromProduct = (product: ProductItem) => {
     setCustomProductNotes(
-      `${product.name} (${product.size} - Planned Price: ${product.price})`
+      `${product.name} (${product.size} - Target Price: ${product.price})`
     );
     handleNavigate('contact');
   };
@@ -68,10 +77,21 @@ export default function App() {
     handleNavigate('contact');
   };
 
+  const handleNavigateContactWithNote = (note: string) => {
+    setCustomProductNotes(note);
+    handleNavigate('contact');
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F7F9F6] text-[#10251B] selection:bg-[#2F7D4A]/20 selection:text-[#10251B]">
       {/* Sticky Navigation */}
-      <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
+      <Navbar
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
+        lang={lang}
+        onToggleLang={handleToggleLang}
+        onOpenPitchDeck={() => setIsPitchDeckOpen(true)}
+      />
 
       {/* Main Content Area with Page Views */}
       <main className="flex-1 w-full">
@@ -80,6 +100,9 @@ export default function App() {
             onNavigate={handleNavigate}
             onSelectProduct={handleProductSelect}
             onRequestCustom={() => setIsCustomModalOpen(true)}
+            lang={lang}
+            onOpenPitchDeck={() => setIsPitchDeckOpen(true)}
+            onNavigateContactWithNote={handleNavigateContactWithNote}
           />
         )}
 
@@ -96,6 +119,15 @@ export default function App() {
         {currentPage === 'process' && <ProcessPage onNavigate={handleNavigate} />}
 
         {currentPage === 'rd' && <RDPage onNavigate={handleNavigate} />}
+
+        {currentPage === 'investor' && (
+          <InvestorPitchPage
+            onNavigate={handleNavigate}
+            lang={lang}
+            onOpenPitchDeck={() => setIsPitchDeckOpen(true)}
+            onNavigateContactWithNote={handleNavigateContactWithNote}
+          />
+        )}
 
         {currentPage === 'about' && <AboutPage onNavigate={handleNavigate} />}
 
@@ -119,6 +151,14 @@ export default function App() {
         isOpen={isCustomModalOpen}
         onClose={() => setIsCustomModalOpen(false)}
         onProceedToInquiry={handleCustomProceed}
+      />
+
+      {/* Full-screen Pitch Deck Presentation Modal */}
+      <InvestorPitchDeckModal
+        isOpen={isPitchDeckOpen}
+        onClose={() => setIsPitchDeckOpen(false)}
+        lang={lang}
+        onContactInvestors={() => handleNavigateContactWithNote('Diskusi Proposal Investasi / Kompetisi Bisnis')}
       />
 
       {/* Footer */}

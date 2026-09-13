@@ -96,6 +96,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => {
+                    onNavigate('investor');
+                    scrollToTop();
+                  }}
+                  className="text-[#8DBF73] font-semibold hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8DBF73]" />
+                  <span>Investor & Competition Suite (Proposal / Pitch)</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
                     onNavigate('about');
                     scrollToTop();
                   }}
